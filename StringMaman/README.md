@@ -1,4 +1,4 @@
-# StringTimeMaman
+# StringMaman
 A library of extension methods to assist with some common string manipulation operations
 
 ## JSM-1: Add `Word Count` extension method
