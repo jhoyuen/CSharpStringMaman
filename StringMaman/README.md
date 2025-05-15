@@ -13,3 +13,19 @@ public static int WordCount(this string str)
     return str.Split(new[] { ' ', '\t', '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries).Length;
 }
 ```
+
+## JSM-2: Add `String Email Validation` via an `IsValidEmail` extension method
+- Is Valid Email
+```
+public static EmailValidationResult IsValidEmail(this string email)
+{
+    return email switch
+    {
+        null => EmailValidationResult.EmptyOrWhitespace,
+        { } s when string.IsNullOrEmpty(s) => EmailValidationResult.EmptyOrWhitespace,
+        { } s when string.IsNullOrWhiteSpace(s) => EmailValidationResult.EmptyOrWhitespace,
+        { } s when !new EmailAddressAttribute().IsValid(s) => EmailValidationResult.InvalidFormat,
+        { } s => ValidateMailAddress(s)
+    };
+}
+```
